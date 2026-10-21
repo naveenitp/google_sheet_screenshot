@@ -1,43 +1,19 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8fafc">
-  <title>Sheets to Screenshot</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script defer src="app.js"></script>
-</head>
-<body>
-<header class="top">
-  <div><p class="eyebrow">SPREADSHEET TOOL</p><h1>Sheets to Screenshot</h1><p class="sub">Turn copied spreadsheet cells into a clean, full-size PNG.</p></div>
-  <span class="pill">Runs in your browser</span>
-</header>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sheets to Screenshot</title><link rel="stylesheet" href="styles.css">
+<script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script defer src="app.js"></script></head>
+<body><header class="top"><div><p class="eyebrow">SPREADSHEET TOOL</p><h1>Sheets to Screenshot</h1><p class="sub">Paste copied cells and export a clean report-style PNG.</p></div><span class="pill">No extension required</span></header>
 <main>
-  <section class="panel instructions">
-    <div><h2>1. Copy your cells</h2><p>In Google Sheets, select the range and press <kbd>Ctrl</kbd> + <kbd>C</kbd>. Then paste below. For automatic capture, install the optional Chrome extension included in this project.</p></div>
-  </section>
-  <section class="panel">
-    <label for="pastebox" class="field-title">Paste copied cells</label>
-    <textarea id="pastebox" rows="5" placeholder="Click here and press Ctrl+V, or paste tab-separated spreadsheet data…"></textarea>
-    <div class="actions">
-      <label class="file-button">Import Excel file (.xlsx)<input id="xlsxfile" type="file" accept=".xlsx,.xls" hidden></label>
-      <button id="pasteBtn" class="secondary">Paste from clipboard</button>
-      <button id="clearBtn" class="secondary">Clear</button>
-    </div>
-    <p id="status" class="status" aria-live="polite">Paste data to create a preview. Rich formatting is preserved when Google Sheets supplies HTML clipboard data.</p>
-  </section>
-  <section class="panel controls">
-    <div class="control"><label for="scale">Image scale <strong id="scaleLabel">1.25×</strong></label><input id="scale" type="range" min="1" max="3" step="0.25" value="1.25"></div>
-    <div class="control"><label for="fontSize">Text size <strong id="fontLabel">100%</strong></label><input id="fontSize" type="range" min="75" max="150" step="5" value="100"></div>
-    <div class="control"><label for="bg">Canvas background</label><select id="bg"><option value="#ffffff">White</option><option value="#f8fafc">Soft grey</option><option value="transparent">Transparent</option></select></div>
-    <div class="control"><label for="widthMode">Width</label><select id="widthMode"><option value="content">Fit all columns</option><option value="readable">Readable (wrap long text)</option></select></div>
-  </section>
-  <section class="preview-head"><div><h2>2. Preview</h2><p id="dimensions">No data yet</p></div><button id="downloadBtn" class="primary" disabled>Download PNG</button></section>
-  <section class="preview-shell"><div id="empty" class="empty">Your spreadsheet preview will appear here.</div><div id="capture" class="capture" aria-label="Spreadsheet preview"></div></section>
-  <p class="footnote">Note: ordinary clipboard copy may omit some spreadsheet features such as merged cells, exact row heights, and conditional formatting. For the closest match, use the Excel import option. Large screenshots can consume significant memory.</p>
-</main>
-<footer>Static site · GitHub Pages compatible</footer>
-</body>
-</html>
+<section class="panel instructions"><h2>Copy and paste</h2><p>In Google Sheets, select the full range including headers, press <kbd>Ctrl</kbd> + <kbd>C</kbd>, click the paste area below and press <kbd>Ctrl</kbd> + <kbd>V</kbd>. The first row becomes a bold report header.</p></section>
+<section class="panel"><label for="pastebox" class="field-title">Paste copied cells</label><textarea id="pastebox" rows="5" placeholder="Click here and press Ctrl+V…"></textarea>
+<div class="actions"><label class="file-button">Import Excel (.xlsx/.xls)<input id="xlsxfile" type="file" accept=".xlsx,.xls" hidden></label><button id="pasteBtn" class="secondary">Paste from clipboard</button><button id="clearBtn" class="secondary">Clear</button></div><p id="status" class="status" aria-live="polite">Paste spreadsheet cells to create the preview.</p></section>
+<section class="panel controls">
+<div class="control"><label for="fontSize">Text size <strong id="fontLabel">100%</strong></label><input id="fontSize" type="range" min="70" max="180" step="5" value="100"></div>
+<div class="control"><label for="scale">Export resolution <strong id="scaleLabel">1.5×</strong></label><input id="scale" type="range" min="1" max="4" step=".25" value="1.5"></div>
+<div class="control"><label for="tableWidth">Table width <strong id="widthLabel">1200 px</strong></label><input id="tableWidth" type="range" min="700" max="2400" step="50" value="1200"></div>
+<div class="control"><label for="padding">Cell padding <strong id="paddingLabel">7 px</strong></label><input id="padding" type="range" min="3" max="16" step="1" value="7"></div>
+</section>
+<section class="preview-head"><div><h2>Preview</h2><p id="dimensions">No data yet</p></div><button id="downloadBtn" class="primary" disabled>Download PNG</button></section>
+<section class="preview-shell"><div id="empty" class="empty">Your spreadsheet preview will appear here.</div><div id="capture" class="capture" aria-label="Spreadsheet preview"></div></section>
+<p class="footnote">Plain-text clipboard data preserves cell positions, including empty cells, but cannot include original Google Sheets colors or merged cells. This preview intentionally uses a white background, clear borders, and emphasized headers.</p></main><footer>Static site · GitHub Pages compatible</footer></body></html>
